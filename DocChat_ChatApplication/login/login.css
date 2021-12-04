@@ -1,0 +1,148 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+    }
+    
+    
+    
+    body{
+    margin: 0;
+    padding: 0;
+    background: url("https://cdn.pixabay.com/photo/2019/12/05/13/30/abstract-background-4675153_1280.png") no-repeat center center fixed;
+    background-size: cover;
+    
+    }
+    
+    #navbar{
+    display: flex;
+    background-color: #ff4d4d;
+    z-index: -1;
+    opacity: 0.8;
+    
+    }
+    
+    #navbar ul{
+    display: flex;
+    font-family: "Baloo Bhai",cursive;}
+    
+    
+    #navbar ul li{
+    color: red;
+    list-style: none;
+    font-size: 1.3rem;
+    
+    }
+    
+    #navbar ul li a
+    {
+    color: #000000;
+    display: block;
+    padding: 3px 22px;
+    border-radius: 20px;
+    text-decoration: none;
+    }
+    #navbar ul li a:hover
+    {
+    color: white;
+    background-color: black;
+    
+    }
+    .heading{
+    color: white;
+    position: absolute;
+    top: 10%;
+    left:35%;
+    font-size: 40px;
+    
+    
+    }
+    
+    .container{
+    
+    
+    color: white;
+    position: absolute;
+    top: 40%;
+    left:40%;
+    }
+    
+    .container h1{
+    display: inline-block;
+    font-size: 40px;
+    border-bottom: 5px solid palevioletred;
+    margin-bottom: 40px;
+    padding: 13px 0;
+    }
+    
+    .box{
+    width: 100%;
+    border-bottom: 2px solid palevioletred;
+    color: white;
+    
+    }
+    .box i{
+    width: 20px;
+    
+    text-align: center;
+    
+    
+    }
+    .box input{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: none;
+    width: 100%;
+    margin: 12px 0px;
+    padding: 5px 0px;
+    border: none;
+    outline: none;
+    color: wheat;
+    margin: 2px ;
+    font-size: 20px;
+    }
+    .btn{
+    cursor: pointer;
+    outline: none;
+    width: 50%;
+    margin: 12px 0;
+    padding: 6px;
+    border-radius: 10px;
+    border:2px solid salmon ;
+    font-size: 17px;
+    background: none;
+    color: white;
+    }
+    
+    .btn a{
+    text-decoration:none;
+    color: wheat;
+    }
+    
+    .btn:hover{
+    color: orangered;
+    
+    background: palegoldenrod;
+    }
+    #login-error-msg-holder {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        justify-content:center;
+        align-items: center;
+      }
+      
+      #login-error-msg {
+        text-align: center;
+        margin: 0;
+        padding: 5px;
+        font-weight: bold;
+        color: #8a0000;
+        border: 1px solid #8a0000;
+        background-color: #e58f8f;
+        opacity: 0;
+        transition: 0.3s;
+      }
+      
+      #error-msg-second-line {
+        display: block;
+      }

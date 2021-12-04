@@ -1,0 +1,253 @@
+<html>
+
+<head>
+	<title> Chat </title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+		integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+	<style>
+		* {
+			font-family: sans-serif;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+
+		.pg {
+			height: 100vh;
+		}
+
+		.navbar {
+			font-weight: 100;
+			align-items: center;
+			padding: 10px;
+			background-image: linear-gradient(#eafdfc, #e9f2fa);
+
+		}
+
+		.navbar img {
+			height: 5%;
+			padding: 0;
+			margin: 0;
+			margin-left: 7%;
+			border-radius: 50%;
+			cursor: pointer;
+		}
+
+		.navbar button {
+			background-color: #478ac9;
+			color: white;
+			padding: 10px;
+			border-radius: 20px;
+			border: #478ac9;
+			margin-right: 100px;
+			width: 100px;
+			margin-top: 3px;
+		}
+
+		.navbar button:hover {
+			background-color: black;
+			color: white;
+			cursor: pointer;
+		}
+
+		.full {
+			height: 80%;
+			padding: 10%;
+			padding-top: 1.5%;
+			padding-bottom: 6%;
+		}
+
+		.both {
+			box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2), 0 0 1rem rgba(0, 0, 0, 0.6);
+
+		}
+
+		.header-area {
+			height: 6%;
+			background: #478ac9;
+			color: white;
+			padding: 4px;
+			text-align: center;
+			padding-top: 20px;
+		}
+
+		.page {
+			width: 100%;
+			background: #77aad9;
+			height: 100%;
+
+		}
+
+		.right {
+			float: right;
+			width: 70%;
+			height: 100%;
+		}
+
+		.message-area {
+			height: 85%;
+			padding: 3px;
+			overflow: auto;
+			background-color: white;
+			width: 100%;
+		}
+
+		.typing-area {
+			padding: 3px;
+			height: 15%;
+			background-color: #e5e5e5;
+			width: 100%;
+		}
+
+		.typing-box {
+			width: 70%;
+			height: 45%;
+			resize: none;
+			padding-left: 20px;
+			padding-top: 5PX;
+			margin-top: 2%;
+			margin-left: 5%;
+			margin-right: 3%;
+			font-size: 1rem;
+		}
+
+		.send-button {
+			border: 0;
+			width: 9%;
+			background: #478ac9;
+			color: white;
+			padding: 10px;
+			font-size: 18px;
+			position: absolute;
+			margin-left: 5px;
+			margin-top: 1.2%;
+		}
+
+		.send-button:hover {
+			background-color: black;
+			cursor: pointer;
+			color: white;
+		}
+
+		.message-box {
+			margin-top: 10px;
+		}
+
+		.others-message-box {}
+
+		.my-message-box {
+			text-align: right;
+			background: white;
+		}
+
+		.message {
+			max-width: 70%;
+			padding: 10px;
+			box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2), 0 0 1rem rgba(0, 0, 0, 0.2);
+		}
+
+		.my-message {
+			float: right;
+			background: #478ac9;
+			color: white;
+			font-size: 1.5rem;
+			margin-right: 3%;
+		}
+
+		.others-message {
+			float: left;
+			background: white;
+			font-size: 1.5rem;
+			margin-left: 3%;
+		}
+
+		.separator {
+			width: 100%;
+			height: 8px;
+			float: left;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="pg">
+		<div class="navbar">
+			<img src="logo.jpeg" alt="">
+			<div style="float: right;">
+				<a href="../login/login.html"><button>SIGN OUT</button></a>
+			</div>
+		</div>
+		<div class="full">
+			<div class="both">
+				<div class="header-area">
+					<h1></h1>
+				</div>
+				<div class="page">
+					<div class="left">
+						<div></div>
+						<div></div>
+					</div>
+					<div class="right">
+						<div class="message-area" id="message-area">
+							<!-- <div class="message-box others-message-box">
+				<div class="message others-message"> Hi, How are you? </div>
+				<div class="separator"></div>
+			</div>
+			
+			<div class="message-box my-message-box">
+				<div class="message my-message"> I am good, how are you doing? </div>
+				<div class="separator"></div>
+			</div> -->
+						</div>
+
+						<div class="typing-area">
+							<textarea class="typing-box" id="typing-box"></textarea>
+							<button class="send-button" onclick="sendMessage()"> <i class="fas fa-paper-plane"></i> Send
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"
+		integrity="sha512-WL6WGKMPBiM9PnHRYIn5YEtq0Z8XP4fkVb4qy7PP4vhmYQErJ/dySyXuFIMDf1eEYCXCrQrMJfkNwKc9gsjTjA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script>
+
+		var socket;
+		window.onload = function () {
+
+			socket = io.connect('http://localhost:3000');
+			// socket = io.connect(3000, '0.0.0.0');
+			// server.listen(3000, '0.0.0.0');
+
+
+			socket.on('message-from-others', function (message) {
+				var html = '<div class="message-box others-message-box">' +
+					'<div class="message others-message"> ' + message + ' </div>' +
+					'<div class="separator"></div>' +
+					'</div>';
+
+				document.getElementById("message-area").innerHTML += html;
+			})
+		}
+
+		function sendMessage() {
+			var message = document.getElementById("typing-box").value;
+			var html = '<div class="message-box my-message-box">' +
+				'<div class="message my-message"> ' + message + ' </div>' +
+				'<div class="separator"></div>' +
+				'</div>';
+
+			document.getElementById("message-area").innerHTML += html;
+			document.getElementById("typing-box").value = "";
+
+			socket.emit('codeboard-message', message);
+		}
+
+	</script>
+
+</body>
+
+</html>
